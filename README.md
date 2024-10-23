@@ -39,14 +39,29 @@ Sistem ini dapat mencatat kendaraan masuk dan keluar, menghitung biaya parkir be
 
 ## Struktur Project
 
-ParkingSystem/src/parkingsystem/ParkingSystem.java
-ParkingSystem/src/parkingsystem/ParkingSystem.fxml
-ParkingSystem/src/parkingsystem/ParkingSystemController.java
-ParkingSystem/src/parkingsystem/ParkingEntry.java
-ParkingSystem/src/parkingsystem/ReportEntry.java
-ParkingSystem/src/parkingsystem/PlateInfo.java
-ParkingSystem/database/arking_system.sql
-ParkingSystem/lib/mysql-connector-j-9.1.0
+ParkingSystem/
+├── src/parkingsystem/
+│   ├── ParkingSystem.java
+│   ├── ParkingSystem.fxml
+│   ├── ParkingSystemController.java
+│   ├── ParkingEntry.java
+│   ├── ReportEntry.java
+│   └── PlateInfo.java
+├── database/
+│   └── parking_system.sql
+└── lib/
+└── mysql-connector-j-9.1.0
+
+## Struktur Project Berdasarkan Path
+
+ParkingSystem/src/parkingsystem/ParkingSystem.java; 
+ParkingSystem/src/parkingsystem/ParkingSystem.fxml; 
+ParkingSystem/src/parkingsystem/ParkingSystemController.java; 
+ParkingSystem/src/parkingsystem/ParkingEntry.java; 
+ParkingSystem/src/parkingsystem/ReportEntry.java; 
+ParkingSystem/src/parkingsystem/PlateInfo.java; 
+ParkingSystem/database/arking_system.sql; 
+ParkingSystem/lib/mysql-connector-j-9.1.0; 
 
 ## Catatan Penggunaan
 - Pastikan MySQL/Laragon sudah running sebelum menjalankan aplikasi
