@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parkingsystem.ParkingSystemController">
+    <children>
+        <!-- Tombol Reset Database -->
+        <VBox spacing="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.leftAnchor="10.0">
+            <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="5.0" right="5.0" bottom="5.0" left="5.0"/>
+                </padding>
+                <Button text="Reset Database" onAction="#handleResetDatabase" style="-fx-background-color: #ff6b6b;"/>
+            </HBox>
+            
+            <!-- TabPane Utama -->
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <!-- Tab Parkir Masuk -->
+                    <Tab text="Parkir Masuk">
+                        <content>
+                            <VBox spacing="15.0">
+                                <padding>
+                                    <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                                </padding>
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Jenis Kendaraan:" />
+                                        <ComboBox fx:id="vehicleTypeCombo" prefWidth="200.0">
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <String fx:value="Motor" />
+                                                    <String fx:value="Mobil" />
+                                                </FXCollections>
+                                            </items>
+                                        </ComboBox>
+                                    </children>
+                                </HBox>
+                                
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Nomor Polisi:" />
+                                        <TextField fx:id="plateNumberField" prefWidth="200.0" promptText="XX XXXX XXX"/>
+                                    </children>
+                                </HBox>
+                                
+                                <CheckBox fx:id="useCustomEntryTime" text="Gunakan Waktu Manual" />
+                                
+                                <HBox fx:id="customEntryTimeBox" spacing="10.0" visible="false">
+                                    <children>
+                                        <DatePicker fx:id="entryDate" promptText="Tanggal Masuk"/>
+                                        <TextField fx:id="entryTime" promptText="HH:mm:ss" prefWidth="100"/>
+                                    </children>
+                                </HBox>
+                                
+                                <Button text="Catat Kendaraan Masuk" onAction="#handleVehicleEntry" />
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <!-- Tab Parkir Keluar -->
+                    <Tab text="Parkir Keluar">
+                        <content>
+                            <VBox spacing="15.0">
+                                <padding>
+                                    <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                                </padding>
+                                <TableView fx:id="activeVehiclesTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="idCol" text="ID Parkir" prefWidth="80.0" />
+                                        <TableColumn fx:id="plateNumberCol" text="Nomor Polisi" prefWidth="120.0" />
+                                        <TableColumn fx:id="vehicleTypeCol" text="Jenis Kendaraan" prefWidth="120.0" />
+                                        <TableColumn fx:id="entryTimeCol" text="Waktu Masuk" prefWidth="200.0" />
+                                    </columns>
+                                </TableView>
+                                
+                                <CheckBox fx:id="useCustomExitTime" text="Gunakan Waktu Manual" />
+                                
+                                <HBox fx:id="customExitTimeBox" spacing="10.0" visible="false">
+                                    <children>
+                                        <DatePicker fx:id="exitDate" promptText="Tanggal Keluar"/>
+                                        <TextField fx:id="exitTime" promptText="HH:mm:ss" prefWidth="100"/>
+                                    </children>
+                                </HBox>
+                                
+                                <Button text="Proses Kendaraan Keluar" onAction="#handleVehicleExit" />
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <!-- Tab Laporan -->
+                    <Tab text="Laporan">
+                        <content>
+                            <VBox spacing="15.0">
+                                <padding>
+                                    <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                                </padding>
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <DatePicker fx:id="startDate" promptText="Tanggal Mulai" />
+                                        <DatePicker fx:id="endDate" promptText="Tanggal Selesai" />
+                                        <Button text="Generate Laporan" onAction="#handleGenerateReport" />
+                                    </children>
+                                </HBox>
+                                
+                                <TableView fx:id="reportTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="reportDateCol" text="Tanggal" prefWidth="150.0" />
+                                        <TableColumn fx:id="totalMotorCol" text="Total Motor" prefWidth="100.0" />
+                                        <TableColumn fx:id="totalMobilCol" text="Total Mobil" prefWidth="100.0" />
+                                        <TableColumn fx:id="totalIncomeCol" text="Total Pendapatan" prefWidth="150.0" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </children>
+</AnchorPane>
