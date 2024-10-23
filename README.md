@@ -67,3 +67,47 @@ ParkingSystem/lib/mysql-connector-j-9.1.0;
 - Pastikan MySQL/Laragon sudah running sebelum menjalankan aplikasi
 - Untuk demo/testing, bisa menggunakan fitur custom waktu
 - Data bisa direset menggunakan tombol "Reset Database"
+
+## Skema DB
+
+-- Database: parking_system
+
+-- Tabel: parking_rates
++---------------+-----------------------+------+-----+---------+----------------+
+| Field         | Type                 | Null | Key | Default | Extra          |
++---------------+-----------------------+------+-----+---------+----------------+
+| id            | int                  | NO   | PRI | NULL    | auto_increment |
+| vehicle_type  | enum('Motor','Mobil')| NO   |     | NULL    |                |
+| rate_per_hour | decimal(10,2)        | NO   |     | NULL    |                |
++---------------+-----------------------+------+-----+---------+----------------+
+
+-- Tabel: parking_transactions
++--------------+-----------------------+------+-----+---------+----------------+
+| Field        | Type                 | Null | Key | Default | Extra          |
++--------------+-----------------------+------+-----+---------+----------------+
+| id           | int                  | NO   | PRI | NULL    | auto_increment |
+| plate_number | varchar(20)          | NO   |     | NULL    |                |
+| vehicle_type | enum('Motor','Mobil')| NO   |     | NULL    |                |
+| entry_time   | datetime             | NO   |     | NULL    |                |
+| exit_time    | datetime             | YES  |     | NULL    |                |
+| parking_fee  | decimal(10,2)        | YES  |     | NULL    |                |
+| status       | enum('Active',       | YES  |     | Active  |                |
+|              | 'Completed')         |      |     |         |                |
++--------------+-----------------------+------+-----+---------+----------------+
+
+Relasi:
+- Tabel parking_rates dan parking_transactions terhubung melalui vehicle_type
+- parking_rates menyimpan tarif per jam untuk setiap jenis kendaraan
+- parking_transactions menyimpan semua transaksi parkir
+
+Data Default parking_rates:
++----+--------------+--------------+
+| id | vehicle_type | rate_per_hour|
++----+--------------+--------------+
+|  1 | Motor        |     2000.00  |
+|  2 | Mobil        |     5000.00  |
++----+--------------+--------------+
+
+Status di parking_transactions:
+- Active: Kendaraan masih parkir
+- Completed: Kendaraan sudah keluar dan transaksi selesai
